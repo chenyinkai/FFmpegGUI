@@ -1,0 +1,62 @@
+/*
+ * @NOTE: Prepend a `~` to css file paths that are in your node_modules
+ *        See https://github.com/webpack-contrib/sass-loader#imports
+ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 10px;
+}
+
+body {
+  position: relative;
+  color: white;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  height: fit-content;
+  width: fit-content;
+  margin: 10px;
+}
+
+a:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.default-watermarkImg {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  margin-right: 20px;
+}
+
+.default-watermarkImg .ant-image, .default-watermarkImg .ant-image-img {
+  max-width: 100px;
+  max-height: 100px;
+  margin: auto;
+}

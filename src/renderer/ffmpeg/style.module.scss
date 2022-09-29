@@ -1,0 +1,32 @@
+.ffmpeg {
+  padding-bottom: 20px;
+  :global {
+    .tips {
+      color: cadetblue;
+      font-size: 12px;
+    }
+    .choose-file-btn{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mb20 {
+      margin-bottom: 20px;
+    }
+    .back-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      h2 {
+        margin: 0;
+      }
+      .back-btn {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+    }
+  }
+}
