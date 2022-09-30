@@ -4,6 +4,10 @@ A ffmpeg desktop application built with electron.
 
 ## Usage
 
+You can get macOS or Windows installation package in [releases](https://github.com/chenyinkai/FFmpegGUI/releases).
+
+## Develop
+
 ```bash
 npm install
 
