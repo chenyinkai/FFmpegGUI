@@ -6,7 +6,12 @@ import {
 } from 'renderer/preload';
 import { fsStat } from '../util';
 import { runPromiseByQueue } from './tools';
-import { addWatermark, anyToMP4, getVideoMetadata } from './utils';
+import {
+  addWatermark,
+  anyToMP4,
+  getVideoMetadata,
+  anyToMP4ByCustomShell,
+} from './utils';
 
 const SUFFIX_TYPE_MAP = {
   video: ['mp4', 'mov', 'avi', 'mkv', 'flv', 'webm', 'm4v'].concat(
@@ -55,6 +60,23 @@ export default function registerFFmpegEvent() {
       if (targetType === 'mp4') {
         const asyncTasks = filePaths.map(
           (filePath) => () => anyToMP4(filePath, configuration)
+        );
+        runPromiseByQueue(asyncTasks);
+      }
+    }
+  );
+
+  ipcMain.handle(
+    'ffmpeg:convert:custom',
+    async (
+      _event,
+      filePaths: string[],
+      targetType,
+      configuration: FFmpegConfiguration
+    ) => {
+      if (targetType === 'mp4') {
+        const asyncTasks = filePaths.map(
+          (filePath) => () => anyToMP4ByCustomShell(filePath, configuration)
         );
         runPromiseByQueue(asyncTasks);
       }

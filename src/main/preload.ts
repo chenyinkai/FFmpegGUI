@@ -39,6 +39,18 @@ contextBridge.exposeInMainWorld('electron', {
         configuration
       );
     },
+    convertFilesByCustomShell: (
+      filePaths: string[],
+      targetType: 'mp4' | 'gif',
+      configuration: FFmpegConfiguration
+    ) => {
+      return ipcRenderer.invoke(
+        'ffmpeg:convert:custom',
+        filePaths,
+        targetType,
+        configuration
+      );
+    },
     addWatermark: (configuration: FFmpegWatermarkConfiguration) => {
       return ipcRenderer.invoke('ffmpeg:addWatermark', configuration);
     },

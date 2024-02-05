@@ -15,6 +15,9 @@ const Home: FC = () => {
         <Button type="primary" onClick={() => navigate('/watermark')}>
           视频加水印
         </Button>
+        <Button type="primary" onClick={() => navigate('/convert/custom')}>
+          自定义脚本
+        </Button>
       </Space>
     </Space>
   );

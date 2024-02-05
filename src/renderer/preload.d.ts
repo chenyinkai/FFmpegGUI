@@ -46,6 +46,11 @@ declare global {
           targetType: 'mp4' | 'gif',
           configuration?: FFmpegConfiguration
         ) => Promise<void>;
+        convertFilesByCustomShell: (
+          filePaths: string[],
+          targetType: 'mp4' | 'gif',
+          configuration?: FFmpegConfiguration
+        ) => Promise<void>;
         addWatermark: (
           configuration: FFmpegWatermarkConfiguration
         ) => Promise<void>;

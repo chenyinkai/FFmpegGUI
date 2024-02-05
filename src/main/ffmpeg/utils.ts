@@ -108,6 +108,44 @@ export function anyToMP4(
   });
 }
 
+export function anyToMP4ByCustomShell(
+  filePath: string,
+  configuration: any
+): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const pathToSourceFile = path.resolve(filePath);
+    const pathTarget = parseFilePath(filePath, '.mp4', 'converted');
+    const command = configuration.shell
+      .replace('ffmpeg', `${ffmpegPath}`)
+      .replace('inputfile', pathToSourceFile)
+      .replace('outputfile', pathTarget);
+    runScript({
+      command,
+      args: [],
+      onProgress: (data: string) => {
+        const progress = getProgress(data);
+        if (filterProgress(progress)) {
+          mainWindow.webContents.send('ffmpeg-convert-progress', {
+            path: pathToSourceFile,
+            percent: progress,
+          });
+        }
+      },
+      onSuccess: () => {
+        resolve('success');
+        mainWindow.webContents.send('ffmpeg-convert-success', {
+          path: pathToSourceFile,
+          target: pathTarget,
+          percent: 100,
+        });
+      },
+      onError: (error: Error) => {
+        reject(error);
+      },
+    });
+  });
+}
+
 // 水印位置
 const WATERMARK_PLACEMENT_MAP = {
   center:
